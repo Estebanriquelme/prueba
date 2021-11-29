@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'bootstrap/css/bootstrap.min.css'%}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{%url 'home'%}">
+                <img src="{%static 'img/departamento.png'%}" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                Turismo Real
+            </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{%url 'reserva'%}">reservas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">administracion</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">pagos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active">mantenimiento</a>
+              </li>
+            </ul>
+          </div>
+          <button type="button" class="btn btn-outline-primary"> <a href="{%url 'inicioSesion'%}"> iniciar sesion</a></button>
+        </div>
+    </nav>
+    <h1>{{rut}}</h1>
+    <!-- inicio de carrusel -->
+    <div class="container" style="text-align: center;">
+      <h1>Bienvenido a turismo real</h1>
+      <h2>encuentra aqui los mejores departamentos para arrendar</h2>
+      
+        {%for d in deptos%}
+        <div class="card mb-3">
+          <img src="{{d.img_dept.url}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{d.nombre_depto}}</h5>
+            <p class="card-text">{{d.descripcion_depto}}</p>
+            <p class="card-text"><small class="text-muted">{{d.cuidad_depto}}</small></p>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+    <script src="{%static 'bootstrap/js/bootstrap.min.js'%}"></script> 
+</body>
+</html>

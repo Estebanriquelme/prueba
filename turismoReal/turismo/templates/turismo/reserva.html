@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reserva</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'bootstrap/css/bootstrap.min.css'%}">
+</head>
+<body>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'bootstrap/css/bootstrap.min.css'%}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{%url 'home'%}">
+                <img src="{%static 'img/departamento.png'%}" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                Turismo Real
+            </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{%url 'reserva'%}">reservas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">administracion</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">pagos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active">mantenimiento</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+    <div class="container">
+      <h2>reserva turismo real</h2>
+    </div>
+    <div class="container">
+        <form class="row mb-3" action="{%url 'guardarDatos'%}" method="POST">
+            {%csrf_token%}
+            <div>
+                <label  class="col-sm-2 col-form-label col-form-label-sm" >Rut</label>
+                <input class="col-sm-12" name="rut" type="text">
+                <label class="col-sm-2 col-form-label col-form-label-sm">Nombre</label>
+                <input class="col-sm-12" type="text" name="nombre">
+                <label class="col-sm-2 col-form-label col-form-label-sm">segundo nombre</label>
+                <input class="col-sm-12" type="text" name="s_nombre">
+                <label class="col-sm-2 col-form-label col-form-label-sm">apellido paterno</label>
+                <input class="col-sm-12" type="text" name="ap_pater">
+                <label class="col-sm-2 col-form-label col-form-label-sm">apellido materno</label>
+                <input class="col-sm-12" type="text" name="ap_mater">
+                <label class="col-sm-2 col-form-label col-form-label-sm">sexo</label>
+                <input class="col-sm-10" type="text" name="sexo">
+                <label class="col-sm-2 col-form-label col-form-label-sm">pais de origen</label>
+                <input class="col-sm-12" type="text"name = "pais">
+                <label class="col-sm-2 col-form-label col-form-label-sm">correo</label>
+                <input class="col-sm-12" type="email" name="correo">
+                <label class="col-sm-2 col-form-label col-form-label-sm">numero telefonico</label>
+                <input class="col-sm-12" type="text" name="telefono">
+                <label class="col-sm-2 col-form-label col-form-label-sm">departamento</label>
+                <select class="col-sm-10" name="deptos" id="">
+                    <option value="">seleccionar</option>
+                    {%for d in deptos%}
+                    <option value="{{d.id_depto}}">{{d.nombre_depto}}</option>
+                    {%endfor%}
+                </select>
+                <label class="col-sm-2 col-form-label col-form-label-sm">servicio extra</label>
+                <select class="col-sm-10" name="servicio" id="">
+                    <option value="">seleccionar</option>
+                    {%for s in serv%}
+                    <option value="{{s.id_serv}}">{{s.nombre_serv}}</option>
+                    {%endfor%}
+                </select>
+                <label class="col-sm-2 col-form-label col-form-label-sm">transporte</label>
+                <select class="col-sm-10" name="trans" id="">
+                    <option value="">seleccionar</option>
+                    {%for t in trans%}
+                    <option value="{{t.id_trans}}">{{t.tipo_vehiculo_trans}} <p>valor=</p> {{t.valor_trans}}</option>
+                    {%endfor%}
+                </select>
+                <label class="col-sm-2 col-form-label col-form-label-sm">fecha reserva</label>
+                <input class="col-sm-12" type="date" name="fecha_en">
+                <label class="col-sm-2 col-form-label col-form-label-sm">fecha salida</label>
+                <input class="col-sm-12" type="date" name="feha_sal">
+                <label class="col-sm-2 col-form-label col-form-label-sm">acompañante</label>
+                <input class="col-sm-12" type="number" value="0" name="acompañante"><br><br>
+                <label class="col-sm-2 col-form-label col-form-label-sm">comentario</label>
+                <input class="col-sm-12" type="text" value="0" name="comentario"><br><br>
+                <button type="submit" class="btn btn-outline-primary">reservar</button>
+            </div>
+        </form>
+    </div>
+
+        
+    <script src="{% static 'bootstrap/js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{%static 'bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+</body>
+</html>
