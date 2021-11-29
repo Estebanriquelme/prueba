@@ -54,6 +54,8 @@ class Funcionario(models.Model):
     correo_funcionario = models.CharField(max_length=30)
     n_tel_funcionario = models.CharField(max_length=30)
     sexo_funcionario = models.CharField(max_length=1)
+    check_in = models.CharField(max_length=50)
+    check_out = models.CharField(max_length=50)
     depto = models.ForeignKey(Departamento,on_delete=PROTECT)
 
     def __str__(self):
